@@ -1,0 +1,19 @@
+# App-level permissions
+[]
+access = read : [ * ], write : [ admin ]
+export = system
+
+# KV Store collection permissions
+[processed_output]
+access = read : [ * ], write : [ admin ]
+export = system
+
+# Saved searches permissions
+[savedsearches/AI-Log-Analyzer]
+access = read : [ * ], write : [ admin ]
+export = system
+
+# Dashboard permissions
+[data/ui/views/dashboard]
+access = read : [ * ], write : [ admin ]
+export = system
