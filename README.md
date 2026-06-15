@@ -85,7 +85,8 @@ Ensure the correct read/write permissions are set for the roles that need access
 
 ## Architecture Diagram
 
-![Alt text](images/Splunk_app.png)
+<img src="images/Splunk_app.png" alt="Architecture Diagram" width="900"/>
+
 
 ---
 
