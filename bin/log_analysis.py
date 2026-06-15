@@ -1,3 +1,14 @@
+#!/opt/splunk/bin/python3.13
+import sys
+import os
+
+os.environ["LD_LIBRARY_PATH"] = "/opt/splunk/lib:" + \
+    os.environ.get("LD_LIBRARY_PATH", "")
+
+sys.path.insert(0, "/opt/splunk_libs")
+
+#sys.path.insert(0, "/opt/splunk_libs")
+
 from splunklib.client import connect
 import splunklib.results as results
 import json
@@ -6,13 +17,12 @@ from splunklib.ai import Agent, GoogleModel
 # from pydantic import BaseModel
 from pprint import pprint
 import time
-import os
 
 # Connect to Splunk
 service = connect(
     scheme="https",
-    host="veerender-mothukuri.com",
-    port=443,
+    host="localhost",
+    port=8089,
     username=os.getenv("username"),
     password=os.getenv("password"),
     autologin=True,
@@ -63,8 +73,8 @@ def read_logs_from_splunk():
 
 async def main(search_results):
     model = GoogleModel(
-        model="gemini-3.5-flash",
-        # model="gemini-2.5-flash",
+        #model="gemini-3.5-flash",
+        model="gemini-2.5-flash",
         api_key=os.getenv("gcp_api_key"),
     )
     async with Agent(
@@ -100,8 +110,8 @@ def store_result_in_kvstore(formatted_output, log_data):
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "host":      log_data["host"],
         "data":   formatted_output,
-        "severity": log_data["severity"],
-        "category": log_data["category"]
+        #"severity": log_data["severity"],
+        #"category": log_data["category"]
     }))
 
 

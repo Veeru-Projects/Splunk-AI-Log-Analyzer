@@ -1,0 +1,26 @@
+<dashboard version="1.1" theme="light">
+  <label>Splunk_AI_Log_Analyzer</label>
+  <description>Dashboard for AI Log Analyzer</description>
+  <row>
+    <panel>
+      <title>Quick_summary</title>
+      <table>
+        <search>
+          <query>| inputlookup processed_output
+| head 1
+| fields timestamp data</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>
